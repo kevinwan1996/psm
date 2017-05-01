@@ -26,8 +26,6 @@
 		</fileset>
     <fileset dir="${jboss.home}/modules/system/layers/base/">
 		</fileset>
-    <fileset dir="${basedir}/../deps">
-    </fileset>
 	</path>
 	
 	<path id="web.buildpath">
