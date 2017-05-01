@@ -106,7 +106,7 @@ public class SequenceGeneratorBean implements SequenceGenerator {
         Session sess = (Session) em.getDelegate();
         SessionFactoryImplementor impl = (SessionFactoryImplementor) sess.getSessionFactory();
         MultipleHiLoPerTableGenerator generator = new MultipleHiLoPerTableGenerator();
-        generator.configure(LongType.INSTANCE, params, impl.getDialect());
+        generator.configure(LongType.INSTANCE, params, null);
         generators.put(sequenceName, generator);
         return generator;
     }
