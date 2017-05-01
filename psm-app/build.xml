@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ======================================================================
-    Portal Services Build 
+    Portal Services Build
      ====================================================================== -->
 <project name="CMS Portal Services" default="deploy" basedir=".">
 	<property file="${basedir}/build.properties">
@@ -27,7 +27,7 @@
     <fileset dir="${jboss.home}/modules/system/layers/base/">
 		</fileset>
 	</path>
-	
+
 	<path id="web.buildpath">
 		<fileset dir="${build.dir}">
 			<include name="${core-file}" />
@@ -37,7 +37,7 @@
 			<include name="*.jar" />
 		</fileset>
 	</path>
-	
+
 	<path id="ejb.buildpath">
 		<fileset dir="${build.dir}">
 			<include name="${core-file}" />
@@ -63,7 +63,7 @@
 				<include name="${core-file}" />
 			</fileset>
 		</copy>
-		
+
 		<ear destfile="${build.dir}/cms-portal-services.ear" appxml="cms-portal-services/EarContent/META-INF/application.xml">
 			<fileset dir="${build.dir}">
 				<include name="${ejb-file}" />
@@ -80,14 +80,14 @@
 			</fileset>
 		</copy>
 	</target>
-	
+
     <target name="undeploy">
         <delete dir="${deploy.dir}">
             <include name="${ear-file}" />
         </delete>
     </target>
-	
-	
+
+
 	<target name="regenerate-model" depends="clean" description="Regenerates the application model from the schemas">
 		<ant dir="cms-business-model" antfile="build.xml" target="dist"></ant>
 		<copy todir="${basedir}/cms-portal-services/lib" >
@@ -97,7 +97,7 @@
 		</copy>
 		<ant dir="cms-business-model" antfile="build.xml" target="clean"></ant>
 	</target>
-	
+
 	<target name="build-core" depends="clean" description="Builds the core archive">
         <delete dir="${classes.dir}" />
         <mkdir dir="${classes.dir}" />
@@ -106,7 +106,7 @@
             <fileset dir="services/src/main/resources">
             </fileset>
         </copy>
-		
+
         <jar destfile="${build.dir}/${core-file}" basedir="${classes.dir}" />
 	</target>
 
@@ -123,7 +123,7 @@
 		<war destfile="${build.dir}/${war-file}">
 			<classes dir="${web.classes.dir}"></classes>
 			<fileset dir="${basedir}/cms-web/WebContent"></fileset>
-		</war> 
+		</war>
 	</target>
 
 	<target name="build-ejb" depends="build-core" description="Build the EJB archive">
@@ -136,7 +136,7 @@
 			<fileset dir="cms-business-process/src/main/resources">
 			</fileset>
 		</copy>
-		
+
 		<jar destfile="${build.dir}/${ejb-file}" basedir="${ejb.classes.dir}">
 		</jar>
 	</target>
@@ -147,7 +147,7 @@
 		<delete dir="${log.dir}">
 		</delete>
 	</target>
-	
+
 	<target name="deploy-ds" description="Deploys the datasource definition to the application server">
         <copy todir="${deploy.dir}" filtering="on" overwrite="yes">
         	<filterset filtersfile="build.properties"></filterset>
@@ -157,7 +157,7 @@
             </fileset>
         </copy>
 	</target>
-	
+
 	<target name="test" depends="clean" description="Runs the portal tests">
         <delete dir="${classes.dir}" />
         <mkdir dir="${classes.dir}" />
@@ -173,12 +173,12 @@
 			<fileset dir="services/src/main/resources">
 			</fileset>
 		</copy>
-		
+
 		<copy todir="${classes.dir}" overwrite="yes">
 			<fileset dir="cms-business-process/src/main/resources">
 			</fileset>
 		</copy>
-		
+
 		<junit printsummary="yes" haltonfailure="no" failureProperty="test.failure" >
 			<formatter type="xml" />
 			<classpath refid="testpath" />
@@ -190,8 +190,8 @@
 				</fileset>
 			</batchtest>
 		</junit>
-		
+
         <fail message="Tests failed" if="test.failure" />
 	</target>
-	
+
 </project>
