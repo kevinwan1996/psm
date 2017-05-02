@@ -152,7 +152,7 @@
         <copy todir="${deploy.dir}" filtering="on" overwrite="yes">
         	<filterset filtersfile="build.properties"></filterset>
             <fileset dir="db">
-                <include name="mita3-oracle-ds.xml" />
+                <include name="mita3-ds.xml" />
                 <include name="task-service-ds.xml" />
             </fileset>
         </copy>
