@@ -1,5 +1,5 @@
-       Installation instructions for the Provider Screening Module
-       ===========================================================
+Installation instructions for the Provider Screening Module
+===========================================================
 
 ***NOTE: 2017-04-28: These instructions are still very incomplete and
    are a work in progress.  We welcome suggestions on improving
@@ -27,63 +27,7 @@ Note that the repository currently depends on access to a Oracle
 database.  We intend to shift towards PostgreSQL in order to eliminate
 a proprietary dependency.
 
-# WIP: Installation instructions for the old pesp-jboss/ tree
-
-Very preliminary instructions for actually getting a test version of
-this set up, based on the info in the /docs subdir.
-
-1. Create the database
-   ```
-   $ cd /path/to/coeci-cms-mpsp/pesp-jboss/
-   $ mysql -u root -p
-   mysql> CREATE USER CMS IDENTIFIED BY {__your_password__};
-   mysql> quit
-   $ mysql -u CMS -p
-   Password: {__your_password__}
-   mysql> CREATE DATABASE cms_test;
-   # not sure if I need to do GRANT ALL since this user that created the
-   # db
-   mysql> use cms_test;
-   mysql> source db/mita3.sql
-   ```
-
-   Or, in Oracle:
-   
-   Note: CMS is the user name and also the name of the schema.  That is
-   why each oracle object is named with the prefix, "CMS.___".
-    
-   ```
-   # the PORT here is usually 1521 
-   $ sqlplus __ORACLE_USER__/__ORACLE_PASSWORD__@//localhost:__PORT__/__SCHEMA__
-   SQL> CREATE USER CMS;
-   SQL> GRANT CREATE SEQUENCE TO CMS;
-   SQL> GRANT CREATE SESSION TO CMS;
-   SQL> GRANT CREATE TABLE TO CMS;
-   SQL> GRANT UNLIMITED TABLESPACE TO CMS; -- just a precaution
-   ```
-   
-2. Load the sample data
-   ```
-   mysql> source cms-web/src/main/resources/web-test-data.sql
-   ```
-3. Edit build.properties file
-
-    ```
-    # Note that this should properly be build.properties.example, with a
-    # cp step in the INSTALL doc.  I just edited the jdbc.url to read
-    # MySQL instead of Oracle...we'll see if that works.
-    ```
-   
-4. Install JBoss, probably?
-
-
-
-## Background and Troubleshooting
-
-Several people have done work to get this up and running so far.  This
-is a summary of their notes.
-
-### Wildfly Version
+# Wildfly Installation
 
 1. Get Wildfly: Visit
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
@@ -180,7 +124,7 @@ app(s) it hosts - currently none.
         </outbound-socket-binding>
 
 
-### WebSphere Version
+# WebSphere Installation
 
 The WebSphere-based version of the app is documented in
 `documentation/Installation/MPSE Portal Deployment Guide for Websphere
