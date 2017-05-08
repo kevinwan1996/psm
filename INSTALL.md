@@ -29,6 +29,14 @@ a proprietary dependency.
 
 # Wildfly Installation
 
+## Prerequisites
+
+1. [Postgres](https://www.postgresql.org/): [Ubuntu Instructions](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)
+1. [Ruby](https://www.ruby-lang.org) for SMTP support: [Ubuntu Instructions]() 
+1. [Java](https://www.java.com) JRE and JDK: [Ubuntu Instructions](https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
+1. [Ant](https://ant.apache.org/) for building: `sudo apt-get install ant`
+## Installation
+
 1. Get Wildfly: Visit
    [http://wildfly.org/downloads/](http://wildfly.org/downloads/). Download
    the [10.1.0.Final full
@@ -55,8 +63,14 @@ a proprietary dependency.
 
 1. Start the server:
 
+       # First make sure the server is stopped
+       $ ./bin/jboss-cli.sh --connect --command=:shutdown
+
        # to start the server:
-       $ ./bin/standalone.sh -c standalone-full.xml
+       $ ./bin/standalone.sh
+
+       # to start the server in a way that allows remote connections:
+       $ ./bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 &
 
 1. Check that the server is running by visiting
 [http://localhost:9990/](http://localhost:9990/) for the management
@@ -74,6 +88,7 @@ app(s) it hosts - currently none.
         $ su - postgres
         $ createuser --pwprompt psm
         $ createdb --owner=psm psm
+        $ exit
 
 1. Fill in your local properties:
 
@@ -123,8 +138,11 @@ app(s) it hosts - currently none.
           + <remote-destination host="localhost" port="1025"/>
         </outbound-socket-binding>
 
-
 # WebSphere Installation
+
+NOTE: WebSphere is not formally supported at this time.  The instructions
+below should be explored in the way you might explore an old, abandoned
+mansion full of ghosts.
 
 The WebSphere-based version of the app is documented in
 `documentation/Installation/MPSE Portal Deployment Guide for Websphere
