@@ -1015,7 +1015,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (Asset asset : assets) {
             insertAddress(asset.getLocation());
 
-            asset.setId(getSequence().getNextValue(Sequences.ASSET_SEQ));
+            asset.setId(0);
             getEm().persist(asset);
         }
     }
@@ -1034,7 +1034,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
         for (BeneficialOwner owner : owners) {
             insertAddress(owner.getAddress());
             insertAddress(owner.getOtherProviderAddress());
-            owner.setId(getSequence().getNextValue(Sequences.BEN_OWNER_SEQ));
+            owner.setId(0);
             getEm().persist(owner);
         }
     }
@@ -2458,7 +2458,7 @@ public class ProviderEnrollmentServiceBean extends BaseService implements Provid
                     if (owner.getId() == 0) {
                         insertAddress(owner.getAddress());
                         insertAddress(owner.getOtherProviderAddress());
-                        owner.setId(getSequence().getNextValue(Sequences.BEN_OWNER_SEQ));
+                        owner.setId(0);
                         getEm().persist(owner);
                     }
                 }
