@@ -34,6 +34,7 @@ DROP TABLE IF EXISTS
   persistent_logins,
   profile_statuses,
   provider_profiles,
+  provider_statements,
   provider_type_agreement_documents,
   provider_type_license_types,
   provider_types,
@@ -1099,4 +1100,13 @@ CREATE TABLE affiliations(
   terminated_at DATE,
   bgs_study_id TEXT,
   bgs_clearance_date DATE
+);
+
+CREATE TABLE provider_statements(
+  provider_statement_id BIGINT PRIMARY KEY,
+  profile_id BIGINT,
+  ticket_id BIGINT,
+  name TEXT,
+  title TEXT,
+  "date" DATE
 );
