@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS
   addresses,
   affiliations,
   agreement_documents,
+  assured_services,
   audit_details,
   audit_records,
   beneficial_owner_types,
@@ -80,7 +81,7 @@ CREATE TABLE service_assurance_types (
 CREATE TABLE service_assurance_ext_types (
   code CHARACTER VARYING(2) PRIMARY KEY,
   description TEXT UNIQUE,
-  service_assurance_code TEXT
+  service_assurance_code CHARACTER VARYING(2) REFERENCES service_assurance_types(code)
 );
 
 CREATE TABLE cms_user (
@@ -1110,3 +1111,12 @@ CREATE TABLE provider_statements(
   title TEXT,
   "date" DATE
 );
+
+  CREATE TABLE assured_services (
+    assured_service_id BIGINT PRIMARY KEY ,
+    effective_date DATE,
+    service_assurance_code CHARACTER VARYING(2) REFERENCES service_assurance_types(code),
+    profile_id BIGINT,
+    ticket_id BIGINT,
+    status INTEGER
+   ) ;
