@@ -19,7 +19,7 @@
             <div id="mainContent" class="detailPage">
                 <div class="contentWidth">
                     <div class="mainNav">
-                        <a class="logo" href="javascript:;"><img src="<c:url value="/i/logo.gif" />" alt="Medicaid Provider"/></a>
+                        <a class="logo" href="javascript:;"><img src="<c:url value="/i/psm-logo-1.png" />" alt="Medicaid Provider"/></a>
                     </div>
                     <!-- /.mainNav -->
                     <div class="head">

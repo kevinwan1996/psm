@@ -15,7 +15,7 @@
             <div id="mainContent">
                 <div class="contentWidth">
                     <div class="mainNav">
-                        <a class="logo" href="#"><img src="<c:url value="/i/logo.gif" />" alt="Medicaid Provider"/></a>
+                        <a class="logo" href="#"><img src="<c:url value="/i/psm-logo-1.png" />" alt="Medicaid Provider"/></a>
                         <%@include file="/WEB-INF/pages/includes/nav.jsp" %>                        
                     </div>
 					<div class="breadCrumb"></div>

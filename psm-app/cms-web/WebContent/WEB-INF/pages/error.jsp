@@ -20,7 +20,7 @@
 	            <div id="mainContent">
 	                <div class="contentWidth">
 	                    <div class="mainNav">
-	                        <a class="logo" href="javascript:;"><img src="<c:url value="/i/logo.gif" />" alt="Medicaid Provider"/></a>
+	                        <a class="logo" href="javascript:;"><img src="<c:url value="/i/psm-logo-1.png" />" alt="Medicaid Provider"/></a>
 	                        <c:set var="activeTab" value="1" />
 	                        <%@include file="/WEB-INF/pages/includes/nav.jsp" %>
 	                    </div>
@@ -91,7 +91,7 @@
 				<div id="mainContent">
 					<div class="contentWidth">
 						<div class="mainNav">
-							<a class="logo" href="#"><img src="<c:url value='/i/logo.gif' />" alt="Medicaid Provider"/></a>
+							<a class="logo" href="#"><img src="<c:url value='/i/psm-logo-1.png' />" alt="Medicaid Provider"/></a>
 						</div>
 						<!-- /.mainNav -->
 	                    <form id="loginForm" action="<c:url value='j_spring_security_check'/>" method="post">
