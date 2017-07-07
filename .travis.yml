@@ -2,6 +2,10 @@ language: java
 jdk:
   - openjdk8
 dist: trusty
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
 
 cache:
   directories:
@@ -19,4 +23,5 @@ install: true
 
 script:
   - cd psm-app
-  - ./gradlew --no-daemon --console=plain clean build
+  - ./gradlew --no-daemon --console=plain clean cms-portal-services:build
+  - ../scripts/start-wildfly-deploy-application.sh
