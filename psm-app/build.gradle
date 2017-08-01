@@ -19,6 +19,7 @@ ext.libs = [
     commons_fileupload: 'commons-fileupload:commons-fileupload:1.2.2',
     commons_io: 'commons-io:commons-io:2.0.1',
     commons_lang: 'commons-lang:commons-lang:2.4',
+    hapi_fhir: 'ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:2.5',
     itext: 'com.lowagie:itext:2.1.7',
     jasypt: 'org.jasypt:jasypt:1.9.0',
     jbpm_human_task_core: dependencies.create("org.jbpm:jbpm-human-task-core:${jbpm_version}") {
@@ -41,6 +42,7 @@ ext.libs = [
     spring_security_config: "org.springframework.security:spring-security-config:${spring_version}",
     spring_security_ldap: "org.springframework.security:spring-security-ldap:${spring_version}",
     spring_security_taglibs: "org.springframework.security:spring-security-taglibs:${spring_version}",
+    spring_web: "org.springframework:spring-web:${spring_version}",
     spring_webmvc: "org.springframework:spring-webmvc:${spring_version}",
     velocity: 'org.apache.velocity:velocity:1.7',
 ]
@@ -110,8 +112,10 @@ project(':cms-business-process') {
         compile libs.commons_codec
         compile libs.commons_io
         compile libs.commons_lang
+        compile libs.hapi_fhir
         compile libs.itext
         compile libs.jbpm_human_task_core
+        // compile libs.spring_web
         compile libs.velocity
         compile fileTree(dir: '../cms-portal-services/lib', include: '*.jar')
         compile fileTree(dir: '../../../wildfly-10.1.0.Final/modules/system/layers/base/javax')

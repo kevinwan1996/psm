@@ -41,7 +41,7 @@ def not_found(error):
 def home():
     return slurp("api.html")
 
-@app.route("/exclusion", methods=["DELETE", "PATCH", "POST", "PUT"])
+@app.route("/Exclusion", methods=["DELETE", "PATCH", "POST", "PUT"])
 def method_not_allowed():
     return "", 405
 
@@ -49,10 +49,10 @@ def parse_param_date(param_date):
     """Try to parse the date. Return None if there's nothing there to parse."""
     if not param_date:
         return None
-    return dateutil.parser.parse(param_date)
+    return dateutil.parser.parse(param_date).isoformat()
 
-@app.route('/exclusion/<rowid>')
-@app.route("/exclusion")
+@app.route('/Exclusion/<rowid>')
+@app.route("/Exclusion")
 def get_exclusions(rowid=None):
     """Search the exclusions table and return rows.
 
@@ -115,7 +115,7 @@ def get_exclusions(rowid=None):
             "meta":{"tag":[]},
             "total":len(exclusions),
             "type":"searchset",
-            "entry":[{"fullUrl":baseurl + url_for(func_name, rowid=e['id']),
+            "entry":[{"fullUrl":baseurl + url_for(func_name, rowid=e['exclusionId']),
                       "resource":e} for e in exclusions]
         }
 
@@ -124,14 +124,18 @@ def get_exclusions(rowid=None):
             ret['meta']['tag'].append("SUBSETTED")
 
     ## Render output as html, json or xml and return it
-    if not request.content_type or 'html' in request.content_type:
-        # We pass here because we want to fall through to the default, which is html
-        pass
-    elif 'json' in request.content_type:
-        return Response(json.dumps(ret), mimetype='application/fhir+json')
-    elif 'xml' in request.content_type:
-        return Response(dicttoxml.dicttoxml(ret), mimetype='application/fhir+xml')
-    return Response(json.dumps(ret), mimetype='text/html') #TODO: put this in an html template
+    # TODO: add an html template
+    if (request.content_type and 'xml' in request.content_type) or ('xml' ==
+        request.args.get('_format')):
+        return Response(
+            dicttoxml.dicttoxml(ret),
+            mimetype='application/fhir+xml'
+        )
+    else:
+        return Response(
+            json.dumps(ret, indent=2, sort_keys=True),
+            mimetype='application/json'
+        )
 
 if __name__ == "__main__":
     os.system('pandoc api.mdwn > api.html')

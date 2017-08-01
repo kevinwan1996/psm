@@ -50,12 +50,12 @@ def munge_date(date_entry):
 
     f = date_entry
     if date_re.match(f):
-        return "%s-%s-%s 00:00:00.000" % (f[:4], f[4:6], f[6:8])
+        return "%s-%s-%sT00:00:00.000" % (f[:4], f[4:6], f[6:8])
     if slash_date_re.match(f):
         y = int(f[6:8])+2000
         if y > datetime.now().year+1:
             y -= 100
-        return "%s-%s-%s 00:00:00.000" % (y, f[:2], f[3:5])
+        return "%s-%s-%sT00:00:00.000" % (y, f[:2], f[3:5])
 
     # We shouldn't get here, but just in case dates get all funky, we
     # do our best guess at parsing the date:
@@ -262,14 +262,14 @@ def dload_if_stale(fname, url, conn):
     on-disk version is out of date.
 
     FNAME is the filename to save the file as
-    
+
     URL is the url of the file to download
 
     CONN is a model.LEIE instance and we use it just to get access to the db log
 
     Returns True if we downloaded, else False
     """
-    
+
     if fname_is_stale(fname, url, conn):
         debug("Downloading %s" % url)
 
